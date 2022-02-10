@@ -1,32 +1,31 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Animator))]
 public class AvatarAnimationController : MonoBehaviour
 {
     [SerializeField] private InputActionReference move;
 
-    private Animator animator;
+    [SerializeField] private Animator animator;
 
-    private void Awake()
+
+    private void OnEnable()
     {
-        this.move.action.started += AnimateLegs;
-        this.move.action.canceled += StopAnimation;
+        this.move.action.started += this.AnimateLegs;
+        this.move.action.canceled += this.StopAnimation;
     }
 
-    private void Start()
-    {
-        this.animator = GetComponent<Animator>();
-    }
     private void OnDisable()
     {
-        move.action.started -= AnimateLegs;
-        move.action.canceled -= StopAnimation;
+        this.move.action.started -= this.AnimateLegs;
+        this.move.action.canceled -= this.StopAnimation;
     }
+    
 
     private void AnimateLegs(InputAction.CallbackContext obj)
     {
-        if(move.action.ReadValue<Vector2>() == new Vector2(0.0f,1.0f) )
+        bool isWalkingFoward = this.move.action.ReadValue<Vector2>().y > 0;
+
+        if (isWalkingFoward )
         {
             this.animator.SetBool("isMoving", true);
             this.animator.SetFloat("animSpeed", 1.0f);

@@ -3722,7 +3722,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2995329295927612732, guid: 58cfdc7de5ffb8846a04a1dea6d262a2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.259
       objectReference: {fileID: 0}
     - target: {fileID: 2995329295927612732, guid: 58cfdc7de5ffb8846a04a1dea6d262a2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3754,7 +3754,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2995329295927612733, guid: 58cfdc7de5ffb8846a04a1dea6d262a2, type: 3}
       propertyPath: m_RequestedTrackingOriginMode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2995329296160852060, guid: 58cfdc7de5ffb8846a04a1dea6d262a2, type: 3}
       propertyPath: m_ModelPrefab
@@ -4597,7 +4597,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870776650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: 0, z: 0}
+  m_LocalPosition: {x: 2, y: 0, z: -1.259}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1729333278}
@@ -4759,6 +4759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a4ce4ca0c990445a9e951ee72e0aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 1870776653}
   leftFootPosWeight: 1
   rightFootPosWeight: 1
   leftFootRotWeight: 0.81
@@ -4779,6 +4780,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   move: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  animator: {fileID: 1870776653}
 --- !u!1 &1897490636
 GameObject:
   m_ObjectHideFlags: 0

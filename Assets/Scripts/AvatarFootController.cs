@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
+
 public class AvatarFootController : MonoBehaviour
 {
-    private Animator animator;
+    [SerializeField] private Animator animator;
 
     [SerializeField] [Range(0, 1)] private float leftFootPosWeight;
     [SerializeField] [Range(0, 1)] private float rightFootPosWeight;
@@ -18,15 +18,10 @@ public class AvatarFootController : MonoBehaviour
     [SerializeField] private Vector3 raycastOffsRight;
 
 
-    void Start()
-    {
-        this.animator = GetComponent<Animator>(); 
-    }
-
     private void OnAnimatorIK(int layerIndex)
     {
-        Vector3 leftFootPos = animator.GetIKPosition(AvatarIKGoal.LeftFoot);
-        Vector3 rightFootPos = animator.GetIKPosition(AvatarIKGoal.RightFoot);
+        Vector3 leftFootPos = this.animator.GetIKPosition(AvatarIKGoal.LeftFoot);
+        Vector3 rightFootPos = this.animator.GetIKPosition(AvatarIKGoal.RightFoot);
 
         RaycastHit hitLeftFoot;
         RaycastHit hitRightFoot;
