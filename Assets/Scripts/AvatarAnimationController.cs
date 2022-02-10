@@ -1,9 +1,7 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Animator))]
 public class AvatarAnimationController : MonoBehaviour
 {
     [SerializeField] private InputActionReference move;
@@ -16,26 +14,36 @@ public class AvatarAnimationController : MonoBehaviour
         this.move.action.canceled += StopAnimation;
     }
 
-    private void StopAnimation(InputAction.CallbackContext obj)
-    {
-        animator.SetBool("IsMoving", false);
-
-    }
-
     private void Start()
     {
         this.animator = GetComponent<Animator>();
     }
+    private void OnDisable()
+    {
+        move.action.started -= AnimateLegs;
+        move.action.canceled -= StopAnimation;
+    }
 
     private void AnimateLegs(InputAction.CallbackContext obj)
     {
-        animator.SetBool("IsMoving", true);
+        if(move.action.ReadValue<Vector2>() == new Vector2(0.0f,1.0f) )
+        {
+            this.animator.SetBool("isMoving", true);
+            this.animator.SetFloat("animSpeed", 1.0f);
+        }
+        else
+        {
+            this.animator.SetBool("isMoving", true);
+            this.animator.SetFloat("animSpeed", -1.0f);
+        }
     }
 
-    private void OnDisable()
+    private void StopAnimation(InputAction.CallbackContext obj)
     {
-        move.action.performed -= AnimateLegs;
-        move.action.canceled -= StopAnimation;
+        this.animator.SetBool("isMoving", false);
+        this.animator.SetFloat("animSpeed", 0.0f);
     }
+
+
 
 }

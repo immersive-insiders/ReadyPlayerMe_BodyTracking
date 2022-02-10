@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class AvatarFootController : MonoBehaviour
 {
     private Animator animator;
@@ -39,9 +40,14 @@ public class AvatarFootController : MonoBehaviour
             this.animator.SetIKPositionWeight(AvatarIKGoal.LeftFoot, this.leftFootPosWeight);
             this.animator.SetIKPosition(AvatarIKGoal.LeftFoot, hitLeftFoot.point + this.footOffset);
 
+            Debug.DrawRay(transform.position, transform.forward,Color.blue);
+            Debug.DrawRay(hitLeftFoot.normal, hitLeftFoot.normal, Color.red);
+            Debug.DrawRay(transform.forward, hitLeftFoot.normal, Color.green);
+
+
             Quaternion leftFootRotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(transform.forward, hitLeftFoot.normal), hitLeftFoot.normal);
-            animator.SetIKRotationWeight(AvatarIKGoal.LeftFoot, this.leftFootRotWeight);
-            animator.SetIKRotation(AvatarIKGoal.LeftFoot, leftFootRotation);
+            this.animator.SetIKRotationWeight(AvatarIKGoal.LeftFoot, this.leftFootRotWeight);
+            this.animator.SetIKRotation(AvatarIKGoal.LeftFoot, leftFootRotation);
         }
         else
         {
@@ -54,8 +60,8 @@ public class AvatarFootController : MonoBehaviour
             this.animator.SetIKPosition(AvatarIKGoal.RightFoot, hitRightFoot.point + this.footOffset);
 
             Quaternion rightFootRotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(transform.forward, hitRightFoot.normal), hitRightFoot.normal);
-            animator.SetIKRotationWeight(AvatarIKGoal.RightFoot, this.rightFootRotWeight);
-            animator.SetIKRotation(AvatarIKGoal.RightFoot, rightFootRotation);
+            this.animator.SetIKRotationWeight(AvatarIKGoal.RightFoot, this.rightFootRotWeight);
+            this.animator.SetIKRotation(AvatarIKGoal.RightFoot, rightFootRotation);
         }
         else
         {
