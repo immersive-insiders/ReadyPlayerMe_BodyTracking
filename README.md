@@ -1,6 +1,6 @@
 # Lowerbody_IK
 
-This repository has the version of animation rigging where only the upper body can be controlled using the controllers
+This repository has the version of the project where the lower body gets animated while moving.
 
 Check out the Blog [here](https://blog.immersive-insiders.com/animate-avatar-for-vr-in-unity/) 
 
